@@ -1,0 +1,74 @@
+﻿@page
+@model RazorShoesProject.Pages.ConfirmationModel
+@{
+    ViewData["Title"] = "Order";
+}
+
+<div class="p-4">
+    <div class="card">
+        <div class="card-body shadow-none">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-black-50"></p>
+                            <div class="row">
+                                <div class="col">
+                                    <h1>Order Confirmation</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card"></div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <a class="btn text-light m-3">See all Orders</a>
+    <div class="row p-3">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Order #@Model.Order.OrderId</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Customer Details</h4>
+                    <p class="card-text mb-0"><strong>Name</strong></p>
+                    <p class="card-text">@Model.Order.Customer.Name</p>
+                    <p class="card-text mb-0"><strong>Email</strong></p>
+                    <p class="card-text">@Model.Order.Customer.Email</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col-lg-6 offset-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Order Summary</h4>
+                    @foreach (var item in Model.Order.OrderItems)
+                    {
+                        <div>
+                            <p class="mb-0 float-end"><strong>£@Model.CalculateTotal(item)</strong></p>
+                            <p class="mb-0">@item.Shoe.Name</p>
+                            <p class="mb-0 float-end">(£@item.Shoe.Price)</p>
+                            <p style="font-size: 0.8em;color: rgb(242,111,83);;">@item.Quantity</p>
+                        </div>
+                    }
+                    <hr>
+                    
+                    <div>
+                        <p class="mb-0 float-end">£@Model.CalculateTotal()</p>
+                        <p class="mb-0"><strong>Total</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

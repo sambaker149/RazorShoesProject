@@ -1,0 +1,60 @@
+﻿@page
+@model RazorShoesProject.Pages.Addresses.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                House Number
+            </th>
+            <th>
+                House Name
+            </th>
+            <th>
+                Road Name
+            </th>
+            <th>
+                Post Town
+            </th>
+            <th>
+                Post Code
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Address) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HouseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HouseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoadName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostTown)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Postcode)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.AddressId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.AddressId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.AddressId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

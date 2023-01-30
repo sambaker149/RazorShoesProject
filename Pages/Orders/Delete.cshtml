@@ -1,0 +1,58 @@
+﻿@page
+@model RazorShoesProject.Pages.Orders.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Planned Delivery
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.PlannedDelivery)
+        </dd>
+        <dt class="col-sm-2">
+            Actual Delivery
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.ActualDelivery)
+        </dd>
+        <dt class="col-sm-2">
+            Order Status
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.OrderStatus)
+        </dd>
+        <dt class="col-sm-2">
+            Customer
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.Customer.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Payment Details
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.Payment.CardNumber)
+        </dd>
+        <dt class="col-sm-2">
+            Payment Status
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.IsPaid)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Order.OrderId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

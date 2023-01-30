@@ -1,0 +1,84 @@
+﻿@page
+@model RazorShoesProject.Pages.Shoes
+
+@{
+    ViewData["Title"] = "Shoes";
+}
+
+<br />
+<br />
+<h1 class="fw-bold">Available Shoes</h1>
+<br />
+
+<section>
+    <nav>
+        <div class="container flex-grow">
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu-1">...</button>
+            <div id="menu" class="collapse navbar-collapse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item mx-1">
+                        @if (Model.CurrentFilter == "trainer")
+                        {
+                            <a class="btn mt-1" asp-page="./Shoe" asp-route-sortOrder="@Model.PriceSort" asp-route-currentFilter="" style="background-color:#023E73; color: white">Trainers</a>
+                        }
+                        else
+                        {
+                            <a class="btn mt-1" asp-page="./Shoe" asp-route-sortOrder="@Model.PriceSort" asp-route-currentFilter="hotel" style="background-color:#567b92; color:white">Trainers</a>
+                        }
+                    </li>
+                    <li class="nav-item mx-1">
+                        @if (Model.CurrentFilter == "sneaker")
+                        {
+                            <a class="btn mt-1" asp-page="./Shoe" asp-route-sortOrder="@Model.PriceSort" asp-route-currentFilter="" style="background-color:#023E73; color: white">Sneakers</a>
+                        }
+                        else
+                        {
+                            <a class="btn mt-1" asp-page="./Shoe" asp-route-sortOrder="@Model.PriceSort" asp-route-currentFilter="resort" style="background-color:#567b92; color:white">Sneakers</a>
+                        }
+                    </li>
+                    <li class="nav-item mx-1">
+                        @if (Model.CurrentFilter == "running")
+                        {
+                            <a class="btn mt-1" asp-page="./Shoe" asp-route-sortOrder="@Model.PriceSort" asp-route-currentFilter="" style="background-color:#023E73; color: white">Running Shoes</a>
+                        }
+                        else
+                        {
+                            <a class="btn mt-1" asp-page="./Shoe" asp-route-sortOrder="@Model.PriceSort" asp-route-currentFilter="private" style="background-color:#567b92; color:white">Running Shoes</a>
+                        }
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="btn mt-1" style="background: #023E73; color: white" asp-page="./Shoe" asp-route-sortOrder="@Model.PriceSort" asp-route-currentFilter="@Model.CurrentFilter">Sort by Price</a>
+                    </li>
+                </ul>
+                <form asp-page="./Shoe" class="d-flex pl-5 justify-content-end" style="margin-left:500px" method="get">
+                    <div class="shadow-lg mt-3 mb-3">
+                        <input class="form-control" type="text" name="SearchString" value="@Model.SearchString" placeholder="Destination " />
+                    </div>
+                    <div class="shadow-lg mt-3 mb-3">
+                        <button class="btn btn-secondary" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div id="menu-1" class="collapse navbar-collapse"></div>
+        </div>
+    </nav>
+</section>
+<br />
+
+<div class="container">
+    <div class="row">
+        @foreach (var shoe in Model.Shoes)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img src="@Url.Content(shoe.Images[0].ImageUrl)" class="card-img-top" style="width:345px; height:240px; position:relative;">
+                    <div class="card-body">
+                        <span class="bg-dark text-light rounded p-1" style="font-size:0.9em;">£@shoe.Price</span>
+                        <h4 class="card-text">@shoe.Name</h4>
+                        <a asp-route-id="@shoe.ShoeId" asp-page="/Details" class="btn btn-primary shadow float-end mt-1" style="background: #567b92;border-style: none;border-color: var(--bs-navbar-hover-color);">See Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

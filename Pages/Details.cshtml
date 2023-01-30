@@ -1,0 +1,45 @@
+﻿@page
+@model RazorShoesProject.Pages.DetailsModel
+
+@{
+    ViewData["Title"] = "Holiday - " + Model.Shoe.Name;
+}
+
+<div class="container">
+    <div class="row g-0 justify-content-center">
+        <h1 class="text-center mt-3">@Model.Shoe.Name</h1>
+        <div class="col-md-6 offset-lg-0 d-flex mt-4 mr-2 col-lg-9 h-100">
+            <div class="p-3">
+                <p class="lead" style="color: white;font-weight: bold;">Holiday Details</p>
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="float-start">@Model.Shoe.Name</h5>
+                    </div>
+                    <div class="card-body">
+                        <img style="width:100%; height:auto;" src="@Url.Content(Model.Shoe.Images[0].ImageUrl)">
+                        <p class="card-text mt-3">@Model.Shoe.Description</p>
+                        <h4 class="text-end">Price: £<span>@Model.Shoe.Price</span></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+
+    <div class="col mt-4 col-md-6 col-lg-3 ml-1">
+            <div class="p-3" style="background: #fac4b8;">
+                <div class="card">
+                        <a class="row g-0 justify-content-end btn btn-primary d-block w-100" asp-route-id="@Model.Shoe.ShoeId" asp-page="/Order" style="background: #f27052;">Add to Checkout</a>
+                    </div>
+                </div>
+                </div>
+    </div>
+  
+
+
+
+                    <div>
+                        <input type="hidden" asp-for="Shoe.ShoeId" />
+                        <input type="hidden" asp-for="Shoe.Name" />
+                       
+                    </div>
+ </div>

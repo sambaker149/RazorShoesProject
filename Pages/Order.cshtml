@@ -1,0 +1,84 @@
+﻿@page
+@model RazorShoesProject.Pages.OrderModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Order - " + Model.Shoe.Name;
+}
+
+<div class="container">
+    <div class="row g-0 justify-content-center">
+        <h1 class="text-center mt-3">Order</h1>
+        <div class="col-md-6 offset-lg-0 d-flex mt-4 col-lg-5 h-100">
+            <div class="p-3">
+                <p class="lead">Shoe Details</p>
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="float-start">@Model.Shoe.Name</h5>
+                    </div>
+                    <div class="card-body">
+                        <img style="width:100%; height:auto;" src="@Url.Content(Model.Shoe.Images[0].ImageUrl)">
+                        <p class="card-text mt-3">@Model.Shoe.Description</p>
+                        <h4 class="text-end">Price: £<span style="color: #F27052">@Model.Shoe.Price</span></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col mt-4 col-md-6 col-lg-5">
+            <div class="p-3">
+                <p class="lead">Customer Details</p>
+                <form method="post" id="form2">
+                    <div class="p-2 mb-4 rounded" style="border: 0.01em solid #023E73;">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-2">
+                            <label class="form-label">Name *</label>
+                            <input class="form-control" asp-for="Customer.Name" placeholder="Name">
+                            <span asp-validation-for="Customer.Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Date of Birth *</label>
+                            <input class="form-control" asp-for="Customer.DateOfBirth" placeholder="Date of Birth">
+                            <span asp-validation-for="Customer.DateOfBirth" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <p class="lead">Contact Info</p>
+                    <div class="p-2 mb-4 rounded">
+                        <div class="col-6 mb-2">
+                            <label class="form-label">Phone Number</label>
+                            <input asp-for="Customer.PhoneNumber" class="form-control" placeholder="07700000000" />
+                            <span asp-validation-for="Customer.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <label class="form-label">Email Address *</label>
+                        <input value="@User.Identity?.Name" class="form-control" placeholder="example@example.com" disabled/>
+                        <span asp-validation-for="Customer.Email" class="text-danger"></span>
+                    </div>
+                    <p class="lead" style="color: #F27052;font-weight: bold;">Billing Address</p>
+                    <div class="p-2 mb-4 rounded">
+                        <label class="form-label">Address *</label>
+                        <input class="form-control mb-1" asp-for="Address.HouseNumber" placeholder="House No">
+                        <span asp-validation-for="Address.HouseNumber" class="text-danger"></span>
+                        <input class="form-control mb-1" asp-for="Address.RoadName" placeholder="Road Name">
+                        <span asp-validation-for="Address.RoadName" class="text-danger"></span>
+                        <div>
+                            <div class="mb-2 col-5 float-end px-1">
+                                <label class="form-label">Postcode *</label>
+                                <input class="form-control mb-1" asp-for="Address.Postcode" placeholder="Postcode">
+                                <span asp-validation-for="Address.Postcode" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="hidden" asp-for="Customer.Email" value="example@example.com" />
+                        <input type="hidden" asp-for="Shoe.ShoeId" />
+                        <input type="hidden" asp-for="Shoe.ShoeId" />
+                        <div class="col-4 float-start px-2"><a asp-page="/Index" class="btn d-block w-100">Cancel</a></div>
+                        <div class="col-8 float-end px-1"><button class="btn btn-dark d-block w-100" type="submit">Continue and Order</button></div>
+                        <br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

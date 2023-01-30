@@ -1,0 +1,89 @@
+﻿@page
+@model RazorShoesProject.Pages.OrderEditModel
+
+@{
+    ViewData["Title"] = "Edit Order - " + Model.Shoe.Name;
+}
+
+<div class="container">
+    <div class="row g-0 justify-content-center">
+        <h1 class="text-center mt-3">Edit Order</h1>
+        <div class="col-md-6 offset-lg-0 d-flex mt-4 col-lg-5 h-100">
+            <div class="p-3">
+                <p class="lead" style="color: white;font-weight: bold;">Shoe Details</p>
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="float-start">@Model.Shoe.Name</h5>
+                    </div>
+                    <div class="card-body">
+                        <img style="width:100%; height:auto;" src="@Url.Content(Model.Shoe.Images[0].ImageUrl)">
+                        <p class="card-text mt-3">@Model.Shoe.Description</p>
+                        <h4 class="text-end">Price: £<span>@Model.Shoe.Price</span></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col mt-4 col-md-6 col-lg-5">
+            <div class="p-3" style="background: var(--bs-light);border-bottom-right-radius: 1em;border-top-right-radius: 1em;">
+                <p class="lead" style="color: #F27052; font-weight: bold; ">Customer Details</p>
+                <form method="post" id="form2" style="border-bottom-right-radius: 1em;border-top-right-radius: 1em;">
+                    <div class="p-2 mb-4 rounded" style="border: 0.01em solid #023E73;">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-2">
+                            <label class="form-label">Name *</label>
+                            <input class="form-control" asp-for="Order.Customer.Name" placeholder="First Name">
+                            <span asp-validation-for="Order.Customer.Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Date of Birth *</label>
+                            <input class="form-control" asp-for="Order.Customer.DateOfBirth" placeholder="Last Name">
+                            <span asp-validation-for="Order.Customer.DateOfBirth" class="text-danger"></span>
+                        </div>
+                        <div class="mb-4 col-6">
+                            <label class="form-label">Email Address *</label>
+                            <input asp-for="Order.Customer.Email" value="@Model.Order.Customer.DateOfBirth.ToString("yyyy'-'MM'-'dd")" class="form-control" min="01/01/1900" />
+                            <span asp-validation-for="Order.Customer.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="p-2 mb-4 rounded" style="border: 0.01em solid #023E73 ;">
+                        <div class="col-6 mb-2">
+                            <label class="form-label">Phone Number</label>
+                            <input asp-for="Order.Customer.PhoneNumber" class="form-control" placeholder="07700000000" />
+                            <span asp-validation-for="Order.Customer.PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    @*<p class="lead" style="color: #F27052;font-weight: bold;">Address</p>
+                    <div class="p-2 mb-4 rounded">
+                        <label class="form-label">Address *</label>
+                        <input class="form-control mb-1" asp-for="Order.Customer.Address.RoadName" placeholder="Road Name">
+                        <span asp-validation-for="Order.Customer.Address.RoadName" class="text-danger"></span>
+                        <input class="form-control mb-1" asp-for="Order.Customer.Address.PostTown" placeholder="Post Town">
+                        <span asp-validation-for="Order.Customer.Address.PostTown" class="text-danger"></span>
+                        <div>
+                            <div class="mb-2 col-5 float-end px-1">
+                                <label class="form-label">Postcode *</label>
+                                <input class="form-control mb-1" asp-for="Order.Customer.Address.Postcode" placeholder="Postcode">
+                                <span asp-validation-for="Order.Customer.Address.Postcode" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>*@
+                    <p class="lead" style="color: #F27052;font-weight: bold;">Order Details</p>
+                    <div class="p-2 mb-4 rounded" style="border: 0.01em solid #023E73 ;">
+                        <label class="form-label">Quantity *</label>
+                        <input type="number" class="form-control mb-1" placeholder="Qty" min="1" max="4" value="@Model.OrderItem.Quantity" asp-for="@Model.OrderItem.Quantity" required />
+                    </div>
+                    <div>
+                        <input type="hidden" asp-for="Order.Customer.Email" />
+                        <input type="hidden" asp-for="OrderItem.OrderItemId" />
+                        <input type="hidden" asp-for="Order.OrderId" />
+                        <input type="hidden" asp-for="Shoe.ShoeId" />
+                        <input type="hidden" asp-for="Shoe.Name" />
+                        <div class="col-4 float-start px-2"><a asp-page="/Checkout" asp-route-id="@Model.Order.OrderId" class="btn d-block w-100" style="background: var(--bs-card-bg);border-color: #023e73;">Cancel Changes</a></div>
+                        <div class="col-8 float-end px-1"><button class="btn btn-dark d-block w-100" type="submit" style="background: #f27052;">Confirm Changes</button></div>
+                        <br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

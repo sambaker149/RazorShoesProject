@@ -1,0 +1,52 @@
+﻿@page
+@model RazorShoesProject.Pages.Addresses.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Address</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Address.AddressId" />
+            <div class="form-group">
+                <label class="control-label">House Number</label>
+                <input asp-for="Address.HouseNumber" class="form-control" />
+                <span asp-validation-for="Address.HouseNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">House Name</label>
+                <input asp-for="Address.HouseName" class="form-control" />
+                <span asp-validation-for="Address.HouseName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Road Name</label>
+                <input asp-for="Address.RoadName" class="form-control" />
+                <span asp-validation-for="Address.RoadName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Post Town</label>
+                <input asp-for="Address.PostTown" class="form-control" />
+                <span asp-validation-for="Address.PostTown" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Postcode</label>
+                <input asp-for="Address.Postcode" class="form-control" />
+                <span asp-validation-for="Address.Postcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" /> |
+                <a asp-page="./Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

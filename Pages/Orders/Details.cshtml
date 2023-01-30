@@ -1,0 +1,55 @@
+﻿@page
+@model RazorShoesProject.Pages.Orders.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Planned Delivery
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.PlannedDelivery)
+        </dd>
+        <dt class="col-sm-2">
+            Actual Delivery
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.ActualDelivery)
+        </dd>
+        <dt class="col-sm-2">
+            Order Status
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.OrderStatus)
+        </dd>
+        <dt class="col-sm-2">
+            Customer
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.Customer.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Payment Details
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.Payment.CardNumber)
+        </dd>
+        <dt class="col-sm-2">
+            Payment
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.IsPaid)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Order?.OrderId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

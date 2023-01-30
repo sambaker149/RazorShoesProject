@@ -1,0 +1,67 @@
+﻿@page
+@model RazorShoesProject.Pages.PaymentModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container">
+    <div class="row mt-4 justify-content-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <div class="card shadow">
+                <div class="card-body shadow-none">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-black-50"></p>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h1 style="text-align: center;">Checkout</h1>
+                                            <h2 style="text-align: center;">Payment</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <p style="font-size: 18px;"><strong>Total</strong></p>
+                        </div>
+                        <div class="col">
+                            <p class="text-end" style="font-size: 1.3em;">£@Model.CalculateTotal()</p>
+                        </div>
+                    </div>
+                    <hr style="color: rgb(0,0,0);">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="p-2 mb-4 rounded" style="border: 0.01em solid #023E73;">
+                            <div>
+                                <label class="form-label">Card Number *</label>
+                                <input class="form-control" asp-for="Payment.CardNumber">
+                                <span asp-validation-for="Payment.CardNumber" class="text-danger"></span>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label">Expiry Date *</label>
+                                <div class="float-end">
+                                    <label class="form-label">Security Code *</label>
+                                    <input class="form-control" asp-for="Payment.CVVNumber">
+                                    <span asp-validation-for="Payment.CVVNumber" class="text-danger"></span>
+                                </div>
+                                <input class="form-control w-50" asp-for="Payment.ExpiryDate" type="month">
+                                <span asp-validation-for="Payment.ExpiryDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-lg-5"><a class="btn d-block w-100" asp-route-id="@Model." asp-page="/Checkout">Go Back</a></div>
+                            <div class="col"><button class="btn d-block w-100" asp-route-id="@Model.Order.OrderId" type="submit">Pay now</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

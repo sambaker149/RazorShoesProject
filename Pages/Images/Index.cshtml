@@ -1,0 +1,42 @@
+﻿@page
+@model RazorShoesProject.Pages.Images.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Image URL
+            </th>
+            <th>
+                Shoe
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Image) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shoe.ShoeId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ImageId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ImageId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ImageId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

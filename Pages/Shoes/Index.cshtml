@@ -1,0 +1,66 @@
+﻿@page
+@model RazorShoesProject.Pages.Shoes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Brand
+            </th>
+            <th>
+                Gender
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Shoe) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ShoeId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ShoeId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ShoeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
